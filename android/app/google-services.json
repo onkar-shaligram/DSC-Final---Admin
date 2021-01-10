@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "886426006250",
+    "project_id": "dsc-vit-event",
+    "storage_bucket": "dsc-vit-event.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886426006250:android:fc6a11d90a993a15971d93",
+        "android_client_info": {
+          "package_name": "com.example.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886426006250-lbdfej9o4p5cuaruk84q7u0q9uka3c68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABS5wBvXa4QsU3YLi3KYtTlLes1SQY0Ms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886426006250-lbdfej9o4p5cuaruk84q7u0q9uka3c68.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
