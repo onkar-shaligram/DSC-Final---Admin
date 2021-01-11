@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 
-class NewEvent extends StatefulWidget {
+class AddUpcomingEvent extends StatefulWidget {
   @override
-  _NewEventState createState() => _NewEventState();
+  _AddUpcomingEventState createState() => _AddUpcomingEventState();
 }
 
-class _NewEventState extends State<NewEvent> {
-  TextEditingController urlTextEditingController = TextEditingController();
+class _AddUpcomingEventState extends State<AddUpcomingEvent> {
+
+    TextEditingController urlTextEditingController = TextEditingController();
   TextEditingController titleTextEditingController = TextEditingController();
   TextEditingController shortDescriptionTextEditingController = TextEditingController();
   TextEditingController descriptionTextEditingController =
@@ -76,7 +77,7 @@ class _NewEventState extends State<NewEvent> {
       };
 
       FirebaseFirestore.instance
-          .collection("past events").add(eventData)
+          .collection("upcoming events").add(eventData)
           .catchError((e) {
         print("Error encountered while uploading data : $e");
       });
@@ -89,7 +90,7 @@ class _NewEventState extends State<NewEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("New Event"),
+          title: Text("Add Upcoming Event"),
         ),
         body: isLoading
             ? Center(child: CircularProgressIndicator())

@@ -2,13 +2,12 @@ import 'package:admin/Pages/Past%20Events/past%20event.dart';
 import 'package:admin/Pages/Upcoming%20Events/upcoming%20event.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class TestHome extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _TestHomeState createState() => _TestHomeState();
 }
 
-class _HomeState extends State<Home> {
-
+class _TestHomeState extends State<TestHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

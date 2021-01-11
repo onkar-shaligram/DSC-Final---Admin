@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 
-class NewEvent extends StatefulWidget {
+class AddPastEvent extends StatefulWidget {
   @override
-  _NewEventState createState() => _NewEventState();
+  _AddPastEventState createState() => _AddPastEventState();
 }
 
-class _NewEventState extends State<NewEvent> {
-  TextEditingController urlTextEditingController = TextEditingController();
+class _AddPastEventState extends State<AddPastEvent> {
+
+    TextEditingController urlTextEditingController = TextEditingController();
   TextEditingController titleTextEditingController = TextEditingController();
   TextEditingController shortDescriptionTextEditingController = TextEditingController();
   TextEditingController descriptionTextEditingController =
@@ -89,7 +90,7 @@ class _NewEventState extends State<NewEvent> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("New Event"),
+          title: Text("Add Past Event"),
         ),
         body: isLoading
             ? Center(child: CircularProgressIndicator())
