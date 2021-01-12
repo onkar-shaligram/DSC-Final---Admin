@@ -74,6 +74,8 @@ class _AddUpcomingEventState extends State<AddUpcomingEvent> {
         "time": timeTextEditingController.text,
         "uploadTime": DateTime.now().day.toString() + DateTime.now().month.toString() + DateTime.now().year.toString() + DateTime.now().hour.toString() + DateTime.now().minute.toString() + DateTime.now().second.toString() + DateTime.now().millisecond.toString(),
         "priority": priorityTextEditingController.text,
+        "FeedbackFormVisible": "false",
+        "feedbackFormUrlLink": "",
       };
 
       FirebaseFirestore.instance

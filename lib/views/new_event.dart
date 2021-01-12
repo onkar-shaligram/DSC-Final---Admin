@@ -20,6 +20,7 @@ class _NewEventState extends State<NewEvent> {
   TextEditingController timeTextEditingController = TextEditingController();
   TextEditingController priorityTextEditingController = TextEditingController();
 
+
   String imageUrl;
 
   bool isLoading = false;

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class EditEvent extends StatefulWidget {
   DocumentSnapshot docToEdit;
@@ -15,19 +16,21 @@ class _EditEventState extends State<EditEvent> {
   Widget build(BuildContext context) {
     TextEditingController titleTextEditingController =
         TextEditingController(text: widget.docToEdit.data()['title']);
-      TextEditingController shortDescriptionTextEditingController =
-        TextEditingController(text: widget.docToEdit.data()['short description']);
+    TextEditingController shortDescriptionTextEditingController =
+        TextEditingController(
+            text: widget.docToEdit.data()['short description']);
     TextEditingController descriptionTextEditingController =
         TextEditingController(text: widget.docToEdit.data()['description']);
     TextEditingController urlTextEditingController =
         TextEditingController(text: widget.docToEdit.data()['urlToEvent']);
     TextEditingController timeTextEditingController =
         TextEditingController(text: widget.docToEdit.data()['time']);
-      TextEditingController priorityTextEditingController =
+    TextEditingController priorityTextEditingController =
         TextEditingController(text: widget.docToEdit.data()['priority']);
-
-    // print(titleTextEditingController);
-    // print(descriptionTextEditingController);
+    TextEditingController feedbackFormVisible = TextEditingController(
+        text: widget.docToEdit.data()['FeedbackFormVisible']);
+    TextEditingController feedbackFormUrlLink = TextEditingController(
+      text: widget.docToEdit.data()['feedbackFormUrlLink']);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -51,61 +54,81 @@ class _EditEventState extends State<EditEvent> {
             'description': descriptionTextEditingController.text,
             'urlToEvent': urlTextEditingController.text,
             'time': timeTextEditingController.text,
-            "priority": priorityTextEditingController.text
+            "priority": priorityTextEditingController.text,
+            "FeedbackFormVisible": feedbackFormVisible.text,
+            "feedbackFormUrlLink": feedbackFormUrlLink.text
           }).whenComplete(() => Navigator.pop(context));
         },
         child: Icon(Icons.save),
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                TextField(
-                  controller: titleTextEditingController,
-                  decoration: InputDecoration(
-                      hintText: "Enter title", labelText: 'Title'),
-                  maxLines: 2,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [
+              TextField(
+                controller: titleTextEditingController,
+                decoration: InputDecoration(
+                    hintText: "Enter title", labelText: 'Title'),
+                maxLines: 2,
+              ),
+              TextField(
+                controller: shortDescriptionTextEditingController,
+                decoration: InputDecoration(
+                  hintText: "Enter short description",
+                  labelText: 'Short Description',
                 ),
-                TextField(
-                  controller: shortDescriptionTextEditingController,
-                  decoration: InputDecoration(
-                    hintText: "Enter short description",
-                    labelText: 'Short Description',
-                  ),
-                  maxLines: 2,
+                maxLines: 2,
+              ),
+              TextField(
+                controller: descriptionTextEditingController,
+                decoration: InputDecoration(
+                  hintText: "Enter description",
+                  labelText: 'Description',
                 ),
-                TextField(
-                  controller: descriptionTextEditingController,
-                  decoration: InputDecoration(
-                    hintText: "Enter description",
-                    labelText: 'Description',
-                  ),
-                  maxLines: 4,
-                ),
-                TextField(
-                  controller: urlTextEditingController,
-                  decoration: InputDecoration(
-                      hintText: "Enter URL to event", labelText: 'Event URL'),
-                  maxLines: 2,
-                ),
-                TextField(
-                  controller: timeTextEditingController,
-                  decoration: InputDecoration(
-                      hintText: "Enter time", labelText: 'Time of Event'),
-                  maxLines: 2,
-                ),
-                TextField(
-                  controller: priorityTextEditingController,
-                  decoration: InputDecoration(
-                      hintText: "Enter Priority Number", labelText: 'Priority Level'),
-                  maxLines: 1,
-                ),
-              ],
-            ),
+                maxLines: 4,
+              ),
+              TextField(
+                controller: urlTextEditingController,
+                decoration: InputDecoration(
+                    hintText: "Enter URL to event", labelText: 'Event URL'),
+                maxLines: 2,
+              ),
+              TextField(
+                controller: timeTextEditingController,
+                decoration: InputDecoration(
+                    hintText: "Enter time", labelText: 'Time of Event'),
+                maxLines: 2,
+              ),
+              TextField(
+                controller: priorityTextEditingController,
+                decoration: InputDecoration(
+                    hintText: "Enter Priority Number",
+                    labelText: 'Priority Level'),
+                maxLines: 1,
+              ),
+              TextField(
+                controller: feedbackFormUrlLink,
+                decoration: InputDecoration(
+                    hintText:
+                        "feedbackForm Url Link",
+                    labelText: 'feedbackForm Url Link'),
+                maxLines: 1,
+              ),
+              TextField(
+                controller: feedbackFormVisible,
+                decoration: InputDecoration(
+                    hintText:
+                        "Enter true if you want to show feedback form on UI else false",
+                    labelText: 'Feedback form visible?'),
+                maxLines: 1,
+              ),
+              SizedBox(
+                height: 350,
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
