@@ -30,10 +30,13 @@ class _EditEventState extends State<EditEvent> {
     TextEditingController feedbackFormVisible = TextEditingController(
         text: widget.docToEdit.data()['FeedbackFormVisible']);
     TextEditingController feedbackFormUrlLink = TextEditingController(
-      text: widget.docToEdit.data()['feedbackFormUrlLink']);
+        text: widget.docToEdit.data()['feedbackFormUrlLink']);
+
+    var items = ['true', 'false'];
+    var text = feedbackFormVisible.text;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         actions: [
           FlatButton(
@@ -46,6 +49,121 @@ class _EditEventState extends State<EditEvent> {
           ),
         ],
       ),
+      body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Center(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                TextField(
+                  controller: titleTextEditingController,
+                  decoration: InputDecoration(
+                      hintText: "Enter title", labelText: 'Title'),
+                  maxLines: 2,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: shortDescriptionTextEditingController,
+                  decoration: InputDecoration(
+                    hintText: "Enter short description",
+                    labelText: 'Short Description',
+                  ),
+                  maxLines: 2,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: descriptionTextEditingController,
+                  decoration: InputDecoration(
+                    hintText: "Enter description",
+                    labelText: 'Description',
+                  ),
+                  maxLines: 4,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: urlTextEditingController,
+                  decoration: InputDecoration(
+                      hintText: "Enter URL to event", labelText: 'Event URL'),
+                  maxLines: 2,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: timeTextEditingController,
+                  decoration: InputDecoration(
+                      hintText: "Enter time", labelText: 'Time of Event'),
+                  maxLines: 2,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: priorityTextEditingController,
+                  decoration: InputDecoration(
+                      hintText: "Enter Priority Number",
+                      labelText: 'Priority Level'),
+                  maxLines: 1,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: feedbackFormUrlLink,
+                  decoration: InputDecoration(
+                      hintText: "feedbackForm Url Link",
+                      labelText: 'feedbackForm Url Link'),
+                  maxLines: 1,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  enabled: false,
+                  controller: feedbackFormVisible,
+                  decoration: InputDecoration(
+                      hintText:
+                          "Enter true if you want to show feedback form on UI else false",
+                      labelText: 'Feedback form visible?'),
+                  maxLines: 1,
+                ),
+                SizedBox(height: 8,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
+                  child: Center(
+                    child: DropdownButtonFormField(
+                      hint: Text('Feedback form visible?'),
+                      value: feedbackFormVisible.text,
+                      autofocus: false,                  
+                      onChanged: (value) {
+                        feedbackFormVisible.text = value;
+                        widget.docToEdit.reference.update(
+                            {'FeedbackFormVisible': feedbackFormVisible.text});
+                      },
+                      items: items.map((item) {
+                        return DropdownMenuItem(
+                          child: new Text(item),
+                          value: item,
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           widget.docToEdit.reference.update({
@@ -55,80 +173,11 @@ class _EditEventState extends State<EditEvent> {
             'urlToEvent': urlTextEditingController.text,
             'time': timeTextEditingController.text,
             "priority": priorityTextEditingController.text,
-            "FeedbackFormVisible": feedbackFormVisible.text,
+            //"FeedbackFormVisible": feedbackFormVisible.text,
             "feedbackFormUrlLink": feedbackFormUrlLink.text
           }).whenComplete(() => Navigator.pop(context));
         },
         child: Icon(Icons.save),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              TextField(
-                controller: titleTextEditingController,
-                decoration: InputDecoration(
-                    hintText: "Enter title", labelText: 'Title'),
-                maxLines: 2,
-              ),
-              TextField(
-                controller: shortDescriptionTextEditingController,
-                decoration: InputDecoration(
-                  hintText: "Enter short description",
-                  labelText: 'Short Description',
-                ),
-                maxLines: 2,
-              ),
-              TextField(
-                controller: descriptionTextEditingController,
-                decoration: InputDecoration(
-                  hintText: "Enter description",
-                  labelText: 'Description',
-                ),
-                maxLines: 4,
-              ),
-              TextField(
-                controller: urlTextEditingController,
-                decoration: InputDecoration(
-                    hintText: "Enter URL to event", labelText: 'Event URL'),
-                maxLines: 2,
-              ),
-              TextField(
-                controller: timeTextEditingController,
-                decoration: InputDecoration(
-                    hintText: "Enter time", labelText: 'Time of Event'),
-                maxLines: 2,
-              ),
-              TextField(
-                controller: priorityTextEditingController,
-                decoration: InputDecoration(
-                    hintText: "Enter Priority Number",
-                    labelText: 'Priority Level'),
-                maxLines: 1,
-              ),
-              TextField(
-                controller: feedbackFormUrlLink,
-                decoration: InputDecoration(
-                    hintText:
-                        "feedbackForm Url Link",
-                    labelText: 'feedbackForm Url Link'),
-                maxLines: 1,
-              ),
-              TextField(
-                controller: feedbackFormVisible,
-                decoration: InputDecoration(
-                    hintText:
-                        "Enter true if you want to show feedback form on UI else false",
-                    labelText: 'Feedback form visible?'),
-                maxLines: 1,
-              ),
-              SizedBox(
-                height: 350,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
