@@ -33,7 +33,6 @@ dependencies:
   url_launcher: any
   firebase_storage: any
   image_picker: any
-  path_provider: any
 
 dev_dependencies:
   flutter_test:
