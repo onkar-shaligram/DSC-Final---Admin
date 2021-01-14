@@ -33,7 +33,6 @@ class _EditEventState extends State<EditEvent> {
         text: widget.docToEdit.data()['feedbackFormUrlLink']);
 
     var items = ['true', 'false'];
-    var text = feedbackFormVisible.text;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,

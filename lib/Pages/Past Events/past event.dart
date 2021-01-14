@@ -20,8 +20,8 @@ class _PastEventState extends State<PastEvent> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AddPastEvent()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddPastEvent()));
           },
           child: Icon(Icons.add)),
       body: StreamBuilder(
@@ -47,7 +47,7 @@ class _PastEventState extends State<PastEvent> {
                           color: Colors.white24,
                           child: Container(
                             margin: EdgeInsets.all(20),
-                            height: 200,
+                            height: 320,
                             //color: Colors.grey[400],
                             child: Column(
                               children: [
@@ -59,7 +59,7 @@ class _PastEventState extends State<PastEvent> {
                                       snapshot.data.docs[index]
                                           .data()['imageUrl']
                                           .toString(),
-                                      height: 80,
+                                      height: 120,
                                       width: MediaQuery.of(context).size.width,
                                       fit: BoxFit.cover,
                                     ),
@@ -76,8 +76,21 @@ class _PastEventState extends State<PastEvent> {
                                   height: 10,
                                 ),
                                 Text(
-                                  snapshot.data.docs[index]
-                                      .data()['description'],
+                                  "Short Description: ${snapshot.data.docs[index].data()['short description']}",
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Feedback Form Visible: ${snapshot.data.docs[index].data()['FeedbackFormVisible']}",
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Feedback Form Url Link: ${snapshot.data.docs[index].data()['feedbackFormUrlLink']}",
                                   style: TextStyle(fontSize: 13),
                                 ),
                                 SizedBox(

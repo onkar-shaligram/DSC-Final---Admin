@@ -9,8 +9,9 @@ class UpcomingEvent extends StatefulWidget {
 }
 
 class _UpcomingEventState extends State<UpcomingEvent> {
-
-    final ref = FirebaseFirestore.instance.collection('upcoming events').orderBy('priority', descending: false);
+  final ref = FirebaseFirestore.instance
+      .collection('upcoming events')
+      .orderBy('priority', descending: false);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,8 @@ class _UpcomingEventState extends State<UpcomingEvent> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AddUpcomingEvent()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddUpcomingEvent()));
           },
           child: Icon(Icons.add)),
       body: StreamBuilder(
@@ -47,7 +48,7 @@ class _UpcomingEventState extends State<UpcomingEvent> {
                           color: Colors.white24,
                           child: Container(
                             margin: EdgeInsets.all(20),
-                            height: 200,
+                            height: 320,
                             //color: Colors.grey[400],
                             child: Column(
                               children: [
@@ -59,7 +60,7 @@ class _UpcomingEventState extends State<UpcomingEvent> {
                                       snapshot.data.docs[index]
                                           .data()['imageUrl']
                                           .toString(),
-                                      height: 80,
+                                      height: 120,
                                       width: MediaQuery.of(context).size.width,
                                       fit: BoxFit.cover,
                                     ),
@@ -76,8 +77,21 @@ class _UpcomingEventState extends State<UpcomingEvent> {
                                   height: 10,
                                 ),
                                 Text(
-                                  snapshot.data.docs[index]
-                                      .data()['description'],
+                                  "Short Description: ${snapshot.data.docs[index].data()['short description']}",
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Feedback Form Visible: ${snapshot.data.docs[index].data()['FeedbackFormVisible']}",
+                                  style: TextStyle(fontSize: 13),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  "Feedback Form Url Link: ${snapshot.data.docs[index].data()['feedbackFormUrlLink']}",
                                   style: TextStyle(fontSize: 13),
                                 ),
                                 SizedBox(
